@@ -13,7 +13,6 @@ function presswp_copyright_customizer($wp_customize) {
 		    $wp_customize->add_section('social_media_links', array(
 		        'title'          => 'Header Social Media'
 		    ));
-
 		    //adding setting for copyright text
 		    $wp_customize->add_setting('copyright_text', array(
 		        'default'        => 'Copyright @2022. All Rights Reserved by Team Omar',
@@ -27,8 +26,6 @@ function presswp_copyright_customizer($wp_customize) {
 		    $wp_customize->add_setting('linkedin_link', array(
 		        'default'        => 'https://linkedin.com/',
 		    ));
-
-
 		    // add control
 		    $wp_customize->add_control('copyright_text', array(
 		        'label'   => 'Copyright text',
