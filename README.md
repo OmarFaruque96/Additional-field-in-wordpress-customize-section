@@ -18,7 +18,6 @@ Here, I added two sections (one for copyright and another one for social media l
 		        'title'          => 'Topbar',
 		        'priority' 		 => 30,
 		    ));
-
 		    //adding setting for copyright text
 		    $wp_customize->add_setting('copyright_text', array(
 		        'default'        => 'Copyright @2022. All Rights Reserved by Team Omar',
@@ -38,13 +37,11 @@ Here, I added two sections (one for copyright and another one for social media l
 		    $wp_customize->add_setting('instagram_link', array(
 		        'default'        => 'https://instagram.com/',
 		    ));
-
 		    $wp_customize->add_setting('presswp_theme_options[topbar_show_hide]', array(
 		        'default'        => 'value2',
 		        'capability'     => 'edit_theme_options',
 		        'type'           => 'option',
 		    ));
-
 		    $wp_customize->add_setting('email', array(
 		        'default'        => 'example@gmail.com',
 		    ));
