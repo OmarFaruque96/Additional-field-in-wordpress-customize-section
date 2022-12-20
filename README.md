@@ -5,6 +5,7 @@ This code will add additional field in wordpress theme customize options and let
 You can edit or add extra fields if you want to
 Here, I added two sections (one for copyright and another one for social media link)
 <code>
+	
 	function presswp_theme_customizer($wp_customize) {
 		    //adding section in wordpress customizer
 		    $wp_customize->add_section('copyright', array(
@@ -18,6 +19,11 @@ Here, I added two sections (one for copyright and another one for social media l
 		        'title'          => 'Topbar',
 		        'priority' 		 => 30,
 		    ));
+				 $wp_customize->add_section('fp_banner', array(
+		        'title'             => __('FrontPage Banner', 'Press-wp'),
+		        'priority'          => 36,
+		    ));
+
 		    //adding setting for copyright text
 		    $wp_customize->add_setting('copyright_text', array(
 		        'default'        => 'Copyright @2022. All Rights Reserved by Team Omar',
@@ -47,6 +53,10 @@ Here, I added two sections (one for copyright and another one for social media l
 		    ));
 		    $wp_customize->add_setting('phone', array(
 		        'default'        => '',
+		    ));
+				$wp_customize->add_setting('banner_img', array(
+		        'transport'         => 'refresh',
+		        'height'         => 325,
 		    ));
 		    // add control
 		    $wp_customize->add_control('copyright_text', array(
@@ -79,7 +89,6 @@ Here, I added two sections (one for copyright and another one for social media l
 		        'section' => 'social_media_links',
 		        'type'    => 'text',
 		    ));
-
 		    // topbar
 		    $wp_customize->add_control('email', array(
 		        'label'   => 'Email Address',
@@ -91,6 +100,11 @@ Here, I added two sections (one for copyright and another one for social media l
 		        'section' => 'topbar',
 		        'type'    => 'number',
 		    ));
+		// $wp_customize->add_control('banner_img', array(
+		    //     'label'   => 'Change Banner Image',
+		    //     'section' => 'fp_banner',
+		    //     'type'    => 'file',
+		    // ));
 		    $wp_customize->add_setting('tbarshow_hide',
 		    array(
 		        'sanitize_callback' => 'sanitize_text_field',
@@ -104,8 +118,32 @@ Here, I added two sections (one for copyright and another one for social media l
 		        'choices'               => array(
 		            'show'                  => __('Show', 'presswp'),
 		            'hide'                  => __('Hide', 'presswp'),
-		        ),theme_
+		        )
 		    ));
+		$wp_customize->add_setting('banner_show_hide',
+		    array(
+		        'sanitize_callback' => 'sanitize_text_field',
+		        'default' => 'show'
+		    ));
+		    $wp_customize->add_control( 'banner_show_hide', array(
+		        'section'               => 'fp_banner',
+		        'label'                 => __( 'Show', 'presswp' ),
+		        'type'                  => 'checkbox',
+		        'priority'              => 1,
+		        'choices'               => array(
+		            'show'                  => __('Show', 'presswp'),
+		            'hide'                  => __('Hide', 'presswp'),
+		        )
+		    ));
+		$wp_customize->add_setting('fp_banner_img', array(
+		        'transport'         => 'refresh',
+		        'height'         => 325,
+		    ));
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'customizer_setting_one_control', array(
+		        'label'             => __('Change Banner Image', 'Press-wp'),
+		        'section'           => 'fp_banner',
+		        'settings'          => 'fp_banner_img',
+		    )));
 		}
 		add_action('customize_register', 'presswp_theme_customizer');
 </code>
